@@ -1,0 +1,12 @@
+.login-view__container {
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

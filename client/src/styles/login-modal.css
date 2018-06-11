@@ -1,0 +1,18 @@
+.login-modal__input-container {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-modal__button-container {
+    width: 100%;
+    background-color: #009688;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    margin-top: 16px;
+}
