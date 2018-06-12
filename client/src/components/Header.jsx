@@ -39,7 +39,7 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     const {userInfo} = state;
-console.log(userInfo)
+
     return {
         userName: userInfo.userName,
         userIsLogged: userInfo.isLoggedIn

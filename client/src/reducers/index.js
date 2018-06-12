@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
 import {
-    USER_LOGIN
+    USER_LOGIN,
+    REQUEST_POSTS,
+    RECEIVE_POSTS,
+    REQUEST_ALBUMS,
+    RECEIVE_ALBUMS
 } from '../actions';
 
 const userInfo = ( state = {
@@ -19,8 +23,56 @@ const userInfo = ( state = {
     }
 };
 
+const posts = ( state = {
+    postList: [],
+    isFetching: false,
+    hasfetched: false
+}, action) => {
+    switch (action.type) {
+        case REQUEST_POSTS:
+            return {
+                ...state,
+                isFetching: true
+            }
+        case RECEIVE_POSTS:
+            return {
+                ...state,
+                isFetching: false,
+                hasFetched: true,
+                postList: action.content
+            }
+        default:
+            return state;
+    }
+};
+
+const albums = ( state = {
+    albumList: [],
+    isFetching: false,
+    hasfetched: false
+}, action) => {
+    switch (action.type) {
+        case REQUEST_ALBUMS:
+            return {
+                ...state,
+                isFetching: true
+            }
+        case RECEIVE_ALBUMS:
+            return {
+                ...state,
+                isFetching: false,
+                hasFetched: true,
+                albumList: action.content
+            }
+        default:
+            return state;
+    }
+};
+
 const reducers = combineReducers({
-    userInfo
+    userInfo,
+    posts,
+    albums
 });
 
 export default reducers;
