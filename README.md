@@ -1,5 +1,8 @@
 # test-case-one
 
+## To start app
+Navigate to root folder, then `cd client`, `npm install` and `npm start`.
+
 ## Commands
 
 `npm install` will install the app on your local machine
