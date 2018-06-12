@@ -30,8 +30,6 @@ class PostCard extends Component {
     render() {
         const {
             classes,
-            userIsLogged,
-            userName,
             dispatch,
             title,
             userId,

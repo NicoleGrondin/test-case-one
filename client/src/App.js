@@ -7,21 +7,13 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from './reducers';
-import { loadState, saveState } from './utils/storeUtils';
-
-const persistentState = loadState();
 
 const store = createStore(
     reducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() && persistentState,
     applyMiddleware(
         thunkMiddleware
     )
 );
-
-store.subscribe(() => {
-  saveState(store.getState());
-});
 
 class App extends Component {
     render() {
@@ -34,7 +26,7 @@ class App extends Component {
                     <div className="App">
                         <Header />
                         <Route exact path="/content" component={ContentView} />
-                        <Route exact path="/login" component={LoginView} />
+                        <Route exact path="/" component={LoginView} />
                     </div>
                 </BrowserRouter>
             </Provider>

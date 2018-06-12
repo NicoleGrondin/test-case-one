@@ -30,8 +30,6 @@ class AlbumCard extends Component {
     render() {
         const {
             classes,
-            userIsLogged,
-            userName,
             id,
             title,
             userId,
@@ -39,6 +37,7 @@ class AlbumCard extends Component {
             clickable,
             preferenceText
         } = this.props;
+
         return (
             <Grow in={true}>
                 <div>

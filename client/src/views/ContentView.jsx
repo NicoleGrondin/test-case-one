@@ -38,6 +38,14 @@ class ContentView extends Component {
     renderUserPreferences() {
         const {preferences} = this.props;
 
+        if(preferences.preferenceList.length === 0) {
+            return (
+                <h6>
+                    {'Select from the posts and albums lists.'}
+                </h6>
+            );
+        }
+
         return preferences.preferenceList.map((preference, i) => {
             switch (preference.infoType) {
                 case 'POST':
