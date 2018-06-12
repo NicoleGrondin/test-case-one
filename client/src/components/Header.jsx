@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
 
 const styles = {
   root: {
@@ -16,7 +17,7 @@ const styles = {
 class Header extends Component {
 
     render() {
-        const { classes } = this.props;
+        const { classes, userIsLogged, userName } = this.props;
         return (
             <div className={classes.root}>
               <AppBar position="static">
@@ -24,6 +25,11 @@ class Header extends Component {
                   <Typography variant="title" color="inherit" className={classes.flex}>
                       Test Case
                   </Typography>
+                  {
+                      userIsLogged ? (
+                          userName
+                      ) : null
+                  }
                 </Toolbar>
               </AppBar>
             </div>
@@ -31,4 +37,13 @@ class Header extends Component {
     }
 }
 
-export default withStyles(styles)(Header);
+const mapStateToProps = state => {
+    const {userInfo} = state;
+console.log(userInfo)
+    return {
+        userName: userInfo.userName,
+        userIsLogged: userInfo.isLoggedIn
+    }
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(Header));

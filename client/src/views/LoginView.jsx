@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import LoginModal from '../components/LoginModal';
+import { connect } from 'react-redux';
 const imgUrl = require('../assets/logo-no-bg.png');
 require('../styles/login-view.css');
 
@@ -58,10 +59,13 @@ class LoginView extends Component {
                 <LoginModal
                     isOpen={this.state.open}
                     closeModal={this.handleClose}
+                    dispatch={this.props.dispatch}
                 />
             </div>
         );
     }
 }
 
-export default withStyles(styles)(LoginView);
+const mapStateToProps = state => { return {}; };
+
+export default connect(mapStateToProps)(withStyles(styles)(LoginView));

@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router-dom";
 import Grow from '@material-ui/core/Grow';
+import {userLogin} from '../actions';
 const imgUrl = require('../assets/logo-no-bg.png');
 require('../styles/login-modal.css');
 
@@ -100,7 +101,10 @@ class LoginModal extends Component {
                                 <Button
                                     variant="outlined"
                                     className={classes.button}
-                                    onClick={() => {this.props.history.push("/content")}}
+                                    onClick={() => {
+                                        this.props.dispatch(userLogin({userName: this.state.userName}));
+                                        this.props.history.push("/content");
+                                    }}
                                 >
                                     {'Submit'}
                                 </Button>
