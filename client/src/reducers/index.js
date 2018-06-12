@@ -4,8 +4,10 @@ import {
     REQUEST_POSTS,
     RECEIVE_POSTS,
     REQUEST_ALBUMS,
-    RECEIVE_ALBUMS
+    RECEIVE_ALBUMS,
+    ADD_PREFERENCE
 } from '../actions';
+import {clone} from 'ramda';
 
 const userInfo = ( state = {
     isLoggedIn: false,
@@ -17,6 +19,23 @@ const userInfo = ( state = {
                 ...state,
                 isLoggedIn: true,
                 userName: action.content.userName
+            }
+        default:
+            return state;
+    }
+};
+
+const preferences = ( state = {
+    preferenceList: []
+}, action) => {
+    switch (action.type) {
+        case ADD_PREFERENCE:
+            const newPreference = action.content;
+            const preferenceList = clone(state.preferenceList);
+            preferenceList.push(newPreference);
+            return {
+                ...state,
+                preferenceList: preferenceList
             }
         default:
             return state;
@@ -72,7 +91,8 @@ const albums = ( state = {
 const reducers = combineReducers({
     userInfo,
     posts,
-    albums
+    albums,
+    preferences
 });
 
 export default reducers;

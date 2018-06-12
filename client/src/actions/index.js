@@ -11,6 +11,9 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const REQUEST_ALBUMS = 'REQUEST_ALBUMS';
 export const RECEIVE_ALBUMS = 'RECEIVE_ALBUMS';
 
+// User preferences
+export const ADD_PREFERENCE = 'ADD_PREFERENCE';
+
 export const userLogin = (userInfo) => ({
     type: USER_LOGIN,
     content: userInfo
@@ -77,3 +80,9 @@ export const loadContentView = () => dispatch => {
     ]);
     return Promise.resolve();
 };
+
+// User Preference Actions
+export const addUserPreference = (info) => ({
+    type: ADD_PREFERENCE,
+    content: info
+});

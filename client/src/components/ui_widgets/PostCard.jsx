@@ -3,10 +3,13 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Grow from '@material-ui/core/Grow';
+import {addUserPreference} from '../../actions';
 
 const styles = {
     card: {
       minWidth: 275,
+      marginTop: '16px'
     },
     bullet: {
       display: 'inline-block',
@@ -25,27 +28,56 @@ const styles = {
 class PostCard extends Component {
 
     render() {
-        const { classes, userIsLogged, userName } = this.props;
-        
+        const {
+            classes,
+            userIsLogged,
+            userName,
+            dispatch,
+            title,
+            userId,
+            id,
+            body,
+            clickable,
+            preferenceText
+        } = this.props;
+
         return (
-            <div>
-                <Card className={classes.card} id={this.props.id}>
-                    <CardContent>
-                        <Typography variant="headline" component="h2">
-                            {this.props.title}
-                        </Typography>
-                        <Typography component="p">
-                            {'User Id: ' + this.props.userId}
-                        </Typography>
-                        <Typography component="p">
-                            {'Id: ' + this.props.id}
-                        </Typography>
-                        <Typography component="p">
-                            {this.props.body}
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </div>
+            <Grow in={true}>
+                <div>
+                    {!clickable ? <h5>{preferenceText}</h5> : null}
+                    <Card
+                        className={classes.card}
+                        id={id}
+                        style={clickable ? {cursor: 'pointer'} : null}
+                        onClick={() => {
+                            if(!clickable ) {return null;}
+                            const info = {
+                                infoType: 'POST',
+                                title: title,
+                                userId: userId,
+                                id: id,
+                                body: body
+                            }
+                            dispatch(addUserPreference(info));
+                        }}
+                    >
+                        <CardContent>
+                            <Typography variant="headline" component="h2">
+                                {title}
+                            </Typography>
+                            <Typography component="p">
+                                {'User Id: ' + userId}
+                            </Typography>
+                            <Typography component="p">
+                                {'Id: ' + id}
+                            </Typography>
+                            <Typography component="p">
+                                {body}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </div>
+            </Grow>
         );
     }
 }
